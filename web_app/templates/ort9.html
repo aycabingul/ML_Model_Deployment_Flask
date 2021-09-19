@@ -1,0 +1,567 @@
+<html>
+	<head>
+	<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/homepage.css') }}">
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		
+		<title>Lise Not Tahmini</title>
+		<style>
+			@media screen and (min-width: 676px) {
+				.modal-dialog {
+				  max-width: 600px; /* New width for default modal */
+				}
+			}
+		</style>
+	</head>
+	<body>
+	<!-- Java Script -->	
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+		
+		<!-- Navbar-->
+		<nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand mb-0 h1">Öğrenci Akademik Performans Tahmini - Adapazarı Liseler Örneği</span>
+		</nav>
+		<div class="container">
+			<br>
+			<!--Form-->
+			<form action = "{{url_for('predict9')}}" method ="POST" >
+				<fieldset>
+				<legend>Öğrenci Akademik Performans Tahmini Formu</legend><br>
+				  <div class="card card-body" >
+					  <div class="form-group  row">
+						<div class="col-sm">
+							<label for="cinsiyet">Cinsiyetiniz?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0">Kadın</option>
+							  <option value = "1">Erkek</option>
+							</select>
+						</div>
+					  
+					  
+					  
+						  <div class="col-sm">
+							<label for="Asag">Anneniz Sağ mı?</label>
+							<select class="form-control" id="Asag" name = "Asag" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Bsag">Babanız Sağ mı?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="Aoz">Anneniz Öz mü?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Boz">Babanız Öz mü?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  
+					  
+					  
+					  
+						  <div class="col-sm">
+							<label for="ABayri">Anne-Baba ayrı mı?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Abirlikte">Aile ile mi yaşıyorsunuz?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="Aogrenim">Anne öğrenim düzeyi?</label>
+							<select class="form-control"  id="Aogrenim" name = "Aogrenim" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Okul mezunu değil</option>
+							  <option value = "2">İlkokul</option>
+							  <option value = "3">Ortaokul</option>
+							  <option value = "4">Lise</option>
+							  <option value = "5">Önlisans</option>
+							  <option value = "6">Lisans</option>
+							  <option value = "7">Lisansüstü</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Bogrenim">Baba öğrenim düzeyi?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Okul mezunu değil</option>
+							  <option value = "2">İlkokul</option>
+							  <option value = "3">Ortaokul</option>
+							  <option value = "4">Lise</option>
+							  <option value = "5">Önlisans</option>
+							  <option value = "6">Lisans</option>
+							  <option value = "7">Lisansüstü</option>
+							</select>
+						  </div>
+						
+						
+						  <div class="col-sm">
+							<label for="Acalisma">Anne çalışıyor mu?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							  <option value = "2">Emekli</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Bcalisma">Baba çalışıyor mu?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							  <option value = "2">Emekli</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="gelir">Ailenin gelir düzeyi?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1"> 2850 TL'den az </option>
+							  <option value = "2"> 2850TL (Asgari ücret)</option>
+							  <option value = "3"> 2850 - 3500 TL </option>
+							  <option value = "4"> 3500 TL - 6.000 TL </option>
+							  <option value = "5"> 6.000 TL - 10.000 TL </option>
+							  <option value = "6"> 10.000 TL - 15.000 TL </option>
+							  <option value = "7"> 15.000 TL'den çok </option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="Ksayisi">Kardeş sayısı</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1"> 1 </option>
+							  <option value = "2"> 2 </option>
+							  <option value = "3"> 3 </option>
+							  <option value = "4"> 4 </option>
+							  <option value = "5"> 5 veya üzeri </option>
+							</select>
+						  </div>
+					  
+					  
+					  
+						  <div class="col-sm">
+							<label for="oda">Kendinize ait odanız var mı?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="hastalik">Kronik ya da kalıtsal bir rahatsızlığınız var mı?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="uyku">Günde kaç saat uyuyorsunuz (ortalama olarak)?</label>
+							<select class="form-control" id="uyku" name = "uyku" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0"> Uyku sorunlarım var </option>
+							  <option value = "1"> 5 saat veya daha az </option>
+							  <option value = "2"> 5 - 7 saat </option>
+							  <option value = "3"> 7 - 9 saat </option>
+							  <option value = "4"> 9 saat veya üzeri </option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="internet">Günde kaç saat ders dışı internet kullanıyorsunuz (ortalama olarak)?</label>
+							<select class="form-control" id="internet" name = "internet" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0"> İnternet yok </option>
+							  <option value = "1"> 1 saat veya altı </option>
+							  <option value = "2"> 2 saat </option>
+							  <option value = "3"> 3 saat </option>
+							  <option value = "4"> 4 saat </option>
+							  <option value = "5"> 5 saat veya üzeri </option>
+							</select>
+						  </div>
+					  
+						  <div class="col-sm">
+							<label for="televizyon">Günlük ortalama olarak ne sıklıkta televizyon izlersiniz?</label>
+							<select class="form-control" id="televizyon" name = "televizyon" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0">Televizyon yok</option>
+							  <option value = "1">Genelde izlemem</option>
+							  <option value = "2">Nadiren izlerim</option>
+							  <option value = "3">Ara sıra izlerim</option>
+							  <option value = "4">Çok sık izlerim</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="eba_tv">Günlük ortalama olarak ne kadar EBA TV izlersiniz?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0">Televizyon yok</option>
+							  <option value = "1">Hiç izlemem</option>
+							  <option value = "2">Nadiren izlerim</option>
+							  <option value = "3">Ara sıra izlerim</option>
+							  <option value = "4">Düzenli olarak takip ederim</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="oyun">İnternet haricinde günlük ortalama olarak ne sıklıkta oyun oynarsınız?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Hiçbir zaman</option>
+							  <option value = "2">Nadiren</option>
+							  <option value = "3">Ara sıra</option>
+							  <option value = "4">Çok sık</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="ders_calisma">Günlük ortalama olarak kaç saat ders çalışırsınız?</label>
+							<select class="form-control" id="ders_calisma" name = "ders_calisma" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "0"> Hiçbir zaman </option>
+							  <option value = "1"> 1 - 2 saat </option>
+							  <option value = "2"> 3 - 4 saat </option>
+							  <option value = "3"> 5 - 6 saat </option>
+							  <option value = "4"> 7 saat veya üzeri </option>
+							</select>
+						  </div>
+					
+					  
+					  
+						  <div class="col-sm">
+							<label for="okul_dyk">Okul DYK kurslarına katılır mısınız?</label>
+							<select class="form-control" id="okul_dyk" name = "okul_dyk" required>
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="ozel_kurs">Özel ders ya da LGS kursu  alıyor musunuz?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1">Evet</option>
+							  <option value = "0">Hayır</option>
+							</select>
+						  </div>
+						  <div class="col-sm">
+							<label for="sosyal_kulturel">Sosyal aktiviteniz (spor, müzik, tiyatro, bale, binicilik, vb.) var mı?</label>
+							<select class="form-control">
+							  <option disabled selected value> -- Seçim Yapınız -- </option>
+							  <option value = "1"> Evet </option>
+							  <option value = "0"> Hayır </option>
+							</select>
+						  </div>
+					</div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="lgs_puani">LGS puanınız nedir?</label>
+							<input class="form-control" type="text" id="lgs_puani" name = "lgs_puani" required>
+						  </div>
+					  </div>
+					  <br>
+
+					  <div class="form-group  row">
+						  <div class="col-sm">
+							<label for="turkce9">9. sınıf Türkçe ortalamanız nedir? (0-100)</label>
+							<input class="form-control" type="text" id="turkce9" name = "turkce9" required>
+						  </div>
+						  <div class="col-sm">
+							<label for="mat9">9. sınıf Matematik ortalamanız nedir? (0-100)</label>
+							<input class="form-control" type="text" id="mat9" name = "mat9" required>
+						</div>
+					  </div>
+					</div>
+					  <br>
+					  <div class="form-group">
+						<input class="btn btn-primary btn-lg" type="submit" value="Hesapla">
+						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ornekModal">
+							Tahmini Not Aralığını Görüntüle
+						  </button>
+						  
+					  </div>
+					  
+					  <!--Prediction Result-->
+					  <div id ="result" class="center">
+						<div class="modal fade" tabindex="-1" role="dialog" id="ornekModal">
+							<div class="modal-dialog model-lg">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  
+								  <h4 class="modal-title">Tahmini Not Aralığı</h4>
+								</div>
+								<div class="modal-body">
+									<script language="JavaScript">
+										var sonuc = {{result}};
+										if (sonuc < 10)
+										{
+											document.write ('<img src="static/10.png">')
+										}
+										else if (sonuc < 20)
+										{
+											document.write ('<img src="static/20.png">')
+										}
+										else if (sonuc < 30)
+										{
+											document.write ('<img src="static/30.png">')
+										}
+										else if (sonuc < 40)
+										{
+											document.write ('<img src="static/40.png">')
+										}
+										else if (sonuc < 50)
+										{
+											document.write ('<img src="static/50.png">')
+										}
+										else if (sonuc < 60)
+										{
+											document.write ('<img src="static/60.png">')
+										}
+										else if (sonuc < 70)
+										{
+											document.write ('<img src="static/70.png">')
+										}
+										else if (sonuc < 80)
+										{
+											document.write ('<img src="static/80.png">')
+										}
+										else if (sonuc < 90)
+										{
+											document.write ('<img src="static/90.png">')
+										}
+										else if (sonuc <= 100)
+										{
+											document.write ('<img src="static/100.png">')
+										}
+										else
+										{
+											document.write ('<b>','Hatalı sonuç üretildi.', '</b>')
+										}
+									</script>
+
+									<br>
+									<br>
+
+									<div>
+										<script language="JavaScript">
+											var uyku_comment = {{uyku_comment}};
+
+											if (uyku_comment==0)
+											{
+												document.write ('<ul><li><b>','Uyku sorunlarınızı çözmeniz, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (uyku_comment==1)
+											{
+												document.write ('<ul><li><b>','Günlük uyku sürenizi 5-8 saat aralığına çıkarmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (uyku_comment==2)
+											{
+												document.write ('<ul><li><b>','Günlük uyku süreniz ideal.', '</li></ul></b>')
+											}
+											else if (uyku_comment==3)
+											{
+												document.write ('<ul><li><b>','Günlük uyku süreniz ideal.', '</li></ul></b>')
+											}
+											else if (uyku_comment==4)
+											{
+												document.write ('<ul><li><b>','Günlük ideal uyku süresi 5-8 saat aralığıdır. Uyku sürenize dikkat etmeniz, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+
+										</script>	
+
+										<script language="JavaScript">
+											var internet_comment = {{internet_comment}};
+
+											if (internet_comment==1)
+											{
+												document.write ('<ul><li><b>','Günlük internet kullanım süreniz ideal.', '</li></ul></b>')
+											}
+											else if (internet_comment==2)
+											{
+												document.write ('<ul><li><b>','Günlük ideal internet kullanım süresi 1 saat ve daha azdır. Günlük internet kullanım sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır. ', '</li></ul></b>')
+											}
+											else if (internet_comment==3)
+											{
+												document.write ('<ul><li><b>','Günlük ideal internet kullanım süresi 1 saat ve daha azdır. Günlük internet kullanım sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (internet_comment==4)
+											{
+												document.write ('<ul><li><b>','Günlük ideal internet kullanım süresi 1 saat ve daha azdır. Günlük internet kullanım sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (internet_comment==5)
+											{
+												document.write ('<ul><li><b>','Günlük internet kullanım süreniz çok fazla. Günlük internet kullanım sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+
+										</script>	
+
+										<script language="JavaScript">
+											var televizyon_comment = {{televizyon_comment}};
+
+											if (televizyon_comment==1)
+											{
+												document.write ('<ul><li><b>','Televizyon izleme sürenizin minimum seviyede olması, başarınızın artmasına yardımcı olmaktadır.', '</li></ul></b>')
+											}
+											else if (televizyon_comment==2)
+											{
+												document.write ('<ul><li><b>','Televizyon izleme sürenizin minimum seviyede olması, başarınızın artmasına yardımcı olacaktır. ', '</li></ul></b>')
+											}
+											else if (televizyon_comment==3)
+											{
+												document.write ('<ul><li><b>','Televizyon izleme sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (televizyon_comment==4)
+											{
+												document.write ('<ul><li><b>','Televizyon izleme sürenizi azaltmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+
+										</script>
+										
+										<script language="JavaScript">
+											var ders_calisma_comment = {{ders_calisma_comment}};
+
+											if (ders_calisma_comment==0)
+											{
+												document.write ('<ul><li><b>','Günde en az 1 saat ders çalışmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (ders_calisma_comment==1)
+											{
+												document.write ('<ul><li><b>','Günlük ders çalışma sürenizi 3 saat ve üzerine çıkartmanız, başarınızın artmasına yardımcı olacaktır. ', '</li></ul></b>')
+											}
+											else if (ders_calisma_comment==2)
+											{
+												document.write ('<ul><li><b>','Günlük ders çalışma sürenizi 5 saat ve üzerine çıkartmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (ders_calisma_comment==3)
+											{
+												document.write ('<ul><li><b>','Günlük ders çalışma süreniz ideal aralıktadır.', '</li></ul></b>')
+											}
+											else if (ders_calisma_comment==4)
+											{
+												document.write ('<ul><li><b>','Günlük ders çalışma süreniz ideal aralıktadır.', '</li></ul></b>')
+											}
+
+										</script>
+
+										<script language="JavaScript">
+											var okul_dyk_comment = {{okul_dyk_comment}};
+
+											if (okul_dyk_comment==0)
+											{
+												document.write ('<ul><li><b>','Okulda destekleme ve yetiştirme kurslarına katılmanız, başarınızın artmasına yardımcı olacaktır.', '</li></ul></b>')
+											}
+											else if (okul_dyk_comment==1)
+											{
+												document.write ('<ul><li><b>','Okulda destekleme ve yetiştirme kurslarına devamlılığınız, başarınızın artmasına yardımcı olacaktır. ', '</li></ul></b>')
+											}
+
+
+										</script>
+										<p><strong style="color:red;">*Bilgilendirme: </strong><I>Tahmini notunuz %77 doğruluk ile hesaplanmaktadır. Belirtilen sonuçlarda sapma olabilir.</I></p>
+									</div>
+
+								</div>
+								<div class="modal-footer">
+								  <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+								  
+								</div>
+							  </div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						  </div><!-- /.modal -->
+						  
+						<script>
+							if ({{result}} >= 0)
+							{
+								document.write ('<img src="static/ok3.png"><br>')
+								document.write ('<strong style="font-size:22px;">Tahmini notunuz hesaplandı. Görüntülemek için </strong><strong style="color:red; font-size:22px;">Tahmini Not Aralığını Görüntüle </strong><strong style="font-size:22px;">butonuna tıklayınız.</strong>')
+							}
+						</script>
+						
+						
+						
+					 </div>
+				     </div>
+			 </fieldset>
+			</form>
+			
+		</div>
+		
+	</body>
+</html>
+
